@@ -24,14 +24,16 @@ int main()
 		cin >> mind >> maxd;
 		cout << "Введите оставшиеся деньги в банкомате: " << std::endl;
 		cin >> lastd;
-		cout << "Введите сумму " << endl;
-		cin >> cashd;
-		
+
 		Money min = mind;
 		Money max = maxd;
-		Money last = lastd; 
-		Money cash = cashd;
+		Money last = lastd;
 		Bankomat bank(id, last, min, max);
+		cout << bank << endl;
+
+		cout << "Введите сумму " << endl;
+		cin >> cashd;
+		Money cash = cashd;
 		
 		char action;
 		bool label1 = true;
@@ -46,7 +48,7 @@ int main()
 				label1 = true;
 				break;
 			case '1':
-				bank.CutMoney(cash);
+				bank.CutMoney(cashd);
 				label1 = false;
 				break;
 			case '2':
@@ -55,6 +57,7 @@ int main()
 				break;
 			}
 		}
+
 		cout << bank << endl;
 		char choice;
 		bool label2 = true;
