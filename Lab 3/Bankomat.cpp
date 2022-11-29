@@ -32,25 +32,32 @@ void Bankomat::LoadMoney(Money& b)
 	last_sum = temp;
 }
 
-void Bankomat::CutMoney(Money& b)
-{
+void Bankomat::CutMoney(double b)
+{	
+	Money sum = b;
 	if (Check(b))
 	{
-		Money temp = last_sum - b;
+		Money temp = last_sum - sum;
 		last_sum = temp;
 	}
 }
 
 std::string Bankomat::toString()
 {
-	std::stringstream stream;
-	stream << last_sum;
-	std::string str;
-	stream >> str;
-	return str;
+	
+	return last_sum.toString();
 }
 
 std::ostream& operator<<(std::ostream& stream, Bankomat a)
 {
 	return stream << a.toString();
+}
+
+std::istream& operator>>(std::istream& stream, Bankomat a)
+{
+	stream >> a.id;
+	stream >> a.min_sum;
+	stream >> a.max_sum;
+	stream >> a.last_sum;
+	return stream;
 }
