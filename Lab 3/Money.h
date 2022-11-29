@@ -8,10 +8,10 @@
 
 class Money
 {
-	//int k1 = 0;
-	//int k5 = 0;
-	//int k10 = 0;
-	//int k50 = 0;
+	//int k1;
+	//int k5;
+	//int k10;
+	//int k50;
 	int r1 = 0;
 	int r2 = 0;
 	int r5 = 0;
@@ -39,6 +39,7 @@ public:
 	bool operator==(Money& b);
 
 	Money& operator=(Money& b);
+	std::string toString();
 	friend std::ostream& operator<<(std::ostream& os, Money& a);
 	friend std::istream& operator>>(std::istream& in, Money& a);
 };
