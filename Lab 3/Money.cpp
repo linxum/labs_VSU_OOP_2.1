@@ -100,11 +100,13 @@ void Money::Unfold(double number)
 Money Money::operator+(Money& b)
 {
 	Money temp;
-	double x = Fold();
-	double y = b.Fold();
-	double t = x + y;
-	temp.Unfold(t);
-	return temp;
+
+	//double x = Fold();
+	//double y = b.Fold();
+	//double t = x + y;
+	//temp.Unfold(t);
+	//return temp;
+	
 	//temp.k1 = k1 + b.k1;
 	//temp.k5 = k5 + b.k5 + (temp.k1 % 5);
 	//temp.k10 = k10 + b.k10 + (temp.k5 % 2);
@@ -112,23 +114,38 @@ Money Money::operator+(Money& b)
 	//temp.r1 = r1 + b.r1 + (temp.k50 % 2);
 	//temp.r2 = r2 + b.r2 + (temp.r1 % 2);
 	//temp.r5 = r1 + b.r5 + (temp.r1 % 5);
-	//temp.r10 = r1 + b.r10 + (temp.r5 % 10);
-	//temp.r50 = r1 + b.r50 + (temp.r10 % 5);
-	//temp.r100 = r1 + b.r100 + (temp.r50 % 2);
-	//temp.r500 = r1 + b.r500 + (temp.r100 % 5);
-	//temp.r1000 = r1 + b.r1000 + (temp.r500 % 2);
-	//temp.r5000 = r1 + b.r5000 + (temp.r1000 % 5);
-	//return temp;
+	temp.r10 = r10 + b.r10;
+	temp.r50 = r50 + b.r50;
+	temp.r100 = r100 + b.r100;
+	temp.r500 = r500 + b.r500;
+	temp.r1000 = r1000 + b.r1000;
+	temp.r5000 = r5000 + b.r5000;
+	return temp;
 }
 
 Money Money::operator-(Money& b)
 {
 	Money temp;
-	double x = Fold();
-	double y = b.Fold();
-	double t = x - y;
-	temp.Unfold(t);
-	return temp;
+	//double x = Fold();
+	//double y = b.Fold();
+	//double t = x - y;
+	//temp.Unfold(t);
+	//return temp;
+	temp.r5000 = r5000 - b.r5000 - (r1000 < b.r1000);
+	temp.r1000 = r1000 - b.r1000 - 5 * (r500 < b.r500);
+	temp.r500 = r500 - b.r500 - 2 * (r100 < b.r100);
+	temp.r100 = r100 - b.r100 - 5 * (r50 < b.r50);
+	temp.r50 = r50 - b.r50 - 2 * (r10 < b.r10);
+	temp.r10 = r10 - b.r10 - 5 * (r10 < b.r10);
+	//temp.r50 = r50 - b.r50;
+	//temp.r100 = r100 - b.r100;
+	//temp.r500 = r500 - b.r500;
+	//temp.r1000 = r1000 - b.r1000;
+	//temp.r5000 = r5000 - b.r5000;
+	if ((temp.r10 >= 0) && (temp.r50 >= 0) && (temp.r100 >= 0) && (temp.r500 >= 0) && (temp.r1000 >= 0) && (temp.r5000 >= 0))
+		return temp;
+	else
+		return *this;
 }
 
 Money Money::operator/(Money& b)
@@ -198,12 +215,16 @@ Money& Money::operator=(Money& b)
 	return b;
 }
 
-std::ostream& operator<<(std::ostream& os, Money& a)
+
+
+std::string Money::toString()
 {
-	double x = a.Fold();
-	std::string str = std::to_string(x);
-	os << str;
-	return os;
+	double x = Fold();
+	std::string str = std::to_string(x) + ", 5000 = " + std::to_string(r5000)
+		+ ", 1000 = " + std::to_string(r1000) + ", 500 = " + std::to_string(r500)
+		+ ", 100 = " + std::to_string(r100) + ", 50 = " + std::to_string(r50)
+		+ ", 10 = " + std::to_string(r10);
+	return str;
 }
 
 std::istream& operator>>(std::istream& in, Money& a)
