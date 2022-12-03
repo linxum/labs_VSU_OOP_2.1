@@ -14,10 +14,7 @@ Complex::Complex(int _a, int _b)
 
 Complex* Complex::operator+(Complex& object)
 {
-	int _a = a + object.a;
-	int _b = b + object.b;
-	a = _a;
-	b = _b;
+	Pair::operator+(object);
 	return this;
 }
 
@@ -53,10 +50,12 @@ bool Complex::operator==(Complex& object)
 	if (a == object.a)
 		if (b == object.b)
 			return true;
-		else
-			return false;
-	else
-		return false;
+		else return false;
+	else if (a == object.b)
+		if (b == object.a)
+			return true;
+		else return false;
+	else return false;
 }
 
 std::ostream& operator<<(std::ostream& output, Complex& object)
