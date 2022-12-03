@@ -28,7 +28,7 @@ int main()
 				std::cout << "Введите первую пару целых чисел: ";
 				std::cin >> a;
 				char choice1;
-				std::cout << "Выберите действие для пары чисел: + - * / = ";
+				std::cout << "Выберите действие для пары чисел: (+ - * / =): ";
 				std::cin >> choice1;
 				std::cout << "Введите вторую пару целых чисел: ";
 				std::cin >> b;
@@ -54,7 +54,10 @@ int main()
 					std::cout << "Результат: " << c;
 					break;
 				case '=':
-					std::cout << "Результат: " << (a = b);
+					if (a == b)
+						std::cout << "Пары чисел равны" << std::endl;
+					else
+						std::cout << "Пары чисел не равны" << std::endl;
 					break;
 				}
 				menu = false;
@@ -64,7 +67,7 @@ int main()
 				std::cin >> x;
 
 				char choice2;
-				std::cout << "Выберите действие для комплекных чисел: + - * / = ";
+				std::cout << "Выберите действие для комплекных чисел (+ - * / =): ";
 				std::cin >> choice2;
 				std::cout << "Введите второе комплексное число: ";
 				std::cin >> y;
@@ -90,7 +93,10 @@ int main()
 					std::cout << "Результат: " << z;
 					break;
 				case '=':
-					std::cout << "Результат: " << (x = y);
+					if (x == y)
+						std::cout << "Пары чисел равны" << std::endl;
+					else
+						std::cout << "Пары чисел не равны" << std::endl;
 					break;
 				}
 				menu = false;
