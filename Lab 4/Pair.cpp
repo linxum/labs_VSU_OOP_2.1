@@ -21,8 +21,8 @@ Pair* Pair::operator+(Pair& object)
 
 Pair* Pair::operator-(Pair& object)
 {
-	a = a + object.a;
-	b = b + object.b;
+	a = a - object.a;
+	b = b - object.b;
 	return this;
 }
 
@@ -47,8 +47,11 @@ bool Pair::operator==(Pair& object)
 			return true;
 		else
 			return false;
-	else
-		return false;
+	else if (a == object.b)
+		if (b == object.a)
+			return true;
+		else return false;
+	else return false;
 }
 
 std::ostream& operator<<(std::ostream& output, Pair& object)
