@@ -9,6 +9,8 @@ int main()
 	SetConsoleOutputCP(1251);
 	Pair a, b, c;
 	Complex x, y, z;
+	Complex* res;
+	Pair* tmp;
 	bool flag = true;
 	while (flag)
 	{
@@ -28,7 +30,7 @@ int main()
 				std::cout << "Введите первую пару целых чисел: ";
 				std::cin >> a;
 				char choice1;
-				std::cout << "Выберите действие для пары чисел: (+ - * / =): ";
+				std::cout << "Выберите действие для пары чисел: (+ - * =): ";
 				std::cin >> choice1;
 				std::cout << "Введите вторую пару целых чисел: ";
 				std::cin >> b;
@@ -49,10 +51,6 @@ int main()
 					c = *(a * b);
 					std::cout << "Результат: " << c;
 					break;
-				case '/':
-					c = *(a / b);
-					std::cout << "Результат: " << c;
-					break;
 				case '=':
 					if (a == b)
 						std::cout << "Пары чисел равны" << std::endl;
@@ -67,7 +65,7 @@ int main()
 				std::cin >> x;
 
 				char choice2;
-				std::cout << "Выберите действие для комплекных чисел (+ - * / =): ";
+				std::cout << "Выберите действие для комплекных чисел (+ - * =): ";
 				std::cin >> choice2;
 				std::cout << "Введите второе комплексное число: ";
 				std::cin >> y;
@@ -77,19 +75,17 @@ int main()
 					std::cout << "Неверный ввод!" << std::endl;
 					break;
 				case '+':
-					z = *(x + y);
-					std::cout << "Результат: " << z;
+					tmp = x + y;
+					res = (Complex*)tmp;
+					std::cout << "Результат: " << *res;
 					break;
 				case '-':
-					z = *(x - y);
-					std::cout << "Результат: " << z;
+					tmp = x - y;
+					res = (Complex*)tmp;
+					std::cout << "Результат: " << *res;
 					break;
 				case '*':
 					z = *(x * y);
-					std::cout << "Результат: " << z;
-					break;
-				case '/':
-					z = *(x / y);
 					std::cout << "Результат: " << z;
 					break;
 				case '=':
