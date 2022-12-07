@@ -12,7 +12,6 @@ public:
 	Pair* operator +(Pair&);
 	Pair* operator -(Pair&);
 	Pair* operator *(Pair&);
-	Pair* operator /(Pair&);
 	bool operator ==(Pair&);
 	friend std::ostream& operator <<(std::ostream&, Pair&);
 	friend std::istream& operator >>(std::istream&, Pair&);
