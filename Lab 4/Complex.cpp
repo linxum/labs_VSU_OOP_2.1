@@ -12,34 +12,10 @@ Complex::Complex(int _a, int _b)
 	this->b = _b;
 }
 
-Complex* Complex::operator+(Complex& object)
-{
-	Pair::operator+(object);
-	return this;
-}
-
-Complex* Complex::operator-(Complex& object)
-{
-	int _a = a - object.a;
-	int _b = b - object.b;
-	a = _a;
-	b = _b;
-	return this;
-}
-
 Complex* Complex::operator*(Complex& object)
 {
 	int _a = a * object.a - b * object.b;
 	int _b = a * object.b + b * object.a;
-	a = _a;
-	b = _b;
-	return this;
-}
-
-Complex* Complex::operator/(Complex& object)
-{
-	int _a = a / object.a - b / object.b;
-	int _b = a / object.b + b / object.a;
 	a = _a;
 	b = _b;
 	return this;
@@ -60,7 +36,7 @@ bool Complex::operator==(Complex& object)
 
 std::ostream& operator<<(std::ostream& output, Complex& object)
 {
-	output << object.a << "," << object.b;
+	output << object.a << "+" << object.b << "i" << std::endl;
 	return output;
 }
 
