@@ -33,13 +33,6 @@ Pair* Pair::operator*(Pair& object)
 	return this;
 }
 
-Pair* Pair::operator/(Pair& object)
-{
-	a = a / object.a;
-	b = b / object.b;
-	return this;
-}
-
 bool Pair::operator==(Pair& object)
 {
 	if (a == object.a)
